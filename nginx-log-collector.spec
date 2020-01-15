@@ -1,6 +1,6 @@
 Name:          nginx-log-collector
 Version:       0.1
-Release:       1
+Release:       2
 Summary:       nginx-log-collector
 License:       ASL 2.0 
 Source0:       nginx-log-collector.service
@@ -35,39 +35,40 @@ ls
 pwd
 tree
 
-#%install
-#install -d %{buildroot}%{_bindir}
-#install -p -m 0755 nginx-clickhouse %{buildroot}%{_bindir}/nginx-clickhouse
-#install -d %{buildroot}/etc/nginx-clickhouse
-#install -d %{buildroot}/etc/nginx-clickhouse/config
-#ls
-#pwd
-#cp %{SOURCE1} %{buildroot}/etc/nginx-clickhouse/config/config.yml
-#%if %{use_systemd}
-#%{__mkdir} -p %{buildroot}%{_unitdir}
-#%{__install} -m644 %{SOURCE0} \
-#    %{buildroot}%{_unitdir}/nginx-clickhouse.service
-#%endif
+%install
+install -d %{buildroot}%{_bindir}
+ls
+ls build
+install -p -m 0755 build/nginx-log-collector %{buildroot}%{_bindir}/nginx-log-collector
+install -d %{buildroot}/etc/nginx-log-collector
+ls
+pwd
+cp %{SOURCE1} %{buildroot}/etc/nginx-log-collector/config.yaml
+%if %{use_systemd}
+%{__mkdir} -p %{buildroot}%{_unitdir}
+%{__install} -m644 %{SOURCE0} \
+    %{buildroot}%{_unitdir}/nginx-log-collector.service
+%endif
 
-#%pre
-#/usr/bin/getent group nginx-clickhouse > /dev/null || /usr/sbin/groupadd -r nginx-clickhouse
-#/usr/bin/getent passwd nginx-clickhouse > /dev/null || /usr/sbin/useradd -r -d /usr/lib/nginx-clickhouse -s /bin/bash -g nginx-clickhouse nginx-clickhouse
-#
-#%post
-#%if %use_systemd
-#/usr/bin/systemctl daemon-reload
-#%endif
-#
-#%preun
-#%if %use_systemd
-#/usr/bin/systemctl stop nginx-clickhouse
-#%endif
-#
-#%postun
-#%if %use_systemd
-#/usr/bin/systemctl daemon-reload
-#%endif
-#
+%pre
+/usr/bin/getent group nginx-log-collector > /dev/null || /usr/sbin/groupadd -r nginx-log-collector
+/usr/bin/getent passwd nginx-log-collector > /dev/null || /usr/sbin/useradd -r -d /usr/lib/nginx-log-collector -s /bin/bash -g nginx-log-collector nginx-log-collector
+
+%post
+%if %use_systemd
+/usr/bin/systemctl daemon-reload
+%endif
+
+%preun
+%if %use_systemd
+/usr/bin/systemctl stop nginx-log-collector
+%endif
+
+%postun
+%if %use_systemd
+/usr/bin/systemctl daemon-reload
+%endif
+
 #%files
 #%defattr(-,nginx-clickhouse,nginx-clickhouse,-)
 #%{_bindir}/nginx-clickhouse
