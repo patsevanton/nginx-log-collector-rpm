@@ -35,7 +35,6 @@ ls
 pwd
 cd build
 cp nginx-log-collector ../../../../../nginx-log-collector
-cd -
 
 %install
 install -d %{buildroot}%{_bindir}
