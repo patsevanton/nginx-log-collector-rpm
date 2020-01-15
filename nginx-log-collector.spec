@@ -4,7 +4,7 @@ Release:       1
 Summary:       nginx-log-collector
 License:       ASL 2.0 
 Source0:       nginx-log-collector.service
-Source1:       config.yml
+Source1:       config.yaml
 BuildRequires: golang
 BuildRequires: make
 BuildRequires: tree
