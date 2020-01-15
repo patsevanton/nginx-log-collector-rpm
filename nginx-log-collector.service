@@ -1,0 +1,15 @@
+[Unit]
+Description=Nginx-log-collector
+After=network.target
+
+[Service]
+Type=simple
+#User=nginx-log-collector
+#Group=nginx-log-collector
+WorkingDirectory=/etc/nginx-log-collector
+ExecStart=/usr/bin/nginx-log-collector
+ExecStop=/bin/kill -s SIGTERM $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
