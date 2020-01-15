@@ -1,6 +1,6 @@
 Name:          nginx-log-collector
 Version:       0.1
-Release:       3
+Release:       4
 Summary:       nginx-log-collector
 License:       ASL 2.0 
 Source0:       nginx-log-collector.service
@@ -33,7 +33,9 @@ ls $GOPATH/src/github.com/avito-tech/nginx-log-collector
 make build
 ls
 pwd
+cd build
 cp nginx-log-collector ../../../../../nginx-log-collector
+cd -
 
 %install
 install -d %{buildroot}%{_bindir}
