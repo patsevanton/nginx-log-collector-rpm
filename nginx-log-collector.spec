@@ -41,7 +41,7 @@ install -d %{buildroot}%{_bindir}
 ls
 pwd
 ls _build
-install -p -m 0755 build/nginx-log-collector %{buildroot}%{_bindir}/nginx-log-collector
+install -p -m 0755 nginx-log-collector %{buildroot}%{_bindir}/nginx-log-collector
 install -d %{buildroot}/etc/nginx-log-collector
 ls
 pwd
