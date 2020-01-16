@@ -1,6 +1,6 @@
 Name:          nginx-log-collector
 Version:       0.1
-Release:       4
+Release:       5
 Summary:       nginx-log-collector
 License:       ASL 2.0 
 Source0:       nginx-log-collector.service
@@ -71,10 +71,10 @@ cp %{SOURCE1} %{buildroot}/etc/nginx-log-collector/config.yaml
 /usr/bin/systemctl daemon-reload
 %endif
 
-#%files
-#%defattr(-,nginx-clickhouse,nginx-clickhouse,-)
-#%{_bindir}/nginx-clickhouse
-#/etc/nginx-clickhouse/config/config.yml
-#%if %{use_systemd}
-#%{_unitdir}/nginx-clickhouse.service
-#%endif
+%files
+%defattr(-,nginx-log-collector,nginx-log-collector,-)
+%{_bindir}/nginx-log-collector
+/etc/nginx-log-collector/config.yaml
+%if %{use_systemd}
+%{_unitdir}/nginx-log-collector.service
+%endif
