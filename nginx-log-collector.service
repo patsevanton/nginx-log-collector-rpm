@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-#User=nginx-log-collector
-#Group=nginx-log-collector
+User=nginx-log-collector
+Group=nginx-log-collector
 WorkingDirectory=/etc/nginx-log-collector
-ExecStart=/usr/bin/nginx-log-collector
+ExecStart=/usr/bin/nginx-log-collector -config /etc/nginx-log-collector/config.yaml
 ExecStop=/bin/kill -s SIGTERM $MAINPID
 ExecReload=/bin/kill -HUP $MAINPID
 

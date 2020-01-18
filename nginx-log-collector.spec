@@ -1,8 +1,8 @@
 Name:          nginx-log-collector
-Version:       0.1
-Release:       5
+Version:       0.2
+Release:       1
 Summary:       nginx-log-collector
-License:       ASL 2.0 
+License:       ASL 2.0
 Source0:       nginx-log-collector.service
 Source1:       config.yaml
 BuildRequires: golang
@@ -26,25 +26,16 @@ export GOPATH=%{_builddir}/_build
 echo $GOPATH
 mkdir -p $GOPATH/src/github.com/avito-tech/
 git clone https://github.com/avito-tech/nginx-log-collector.git $GOPATH/src/github.com/avito-tech/nginx-log-collector
-pwd
-ls
 cd $GOPATH/src/github.com/avito-tech/nginx-log-collector
 ls $GOPATH/src/github.com/avito-tech/nginx-log-collector
 make build
-ls
-pwd
 cd build
 cp nginx-log-collector ../../../../../../nginx-log-collector
 
 %install
 install -d %{buildroot}%{_bindir}
-ls
-pwd
-ls _build
 install -p -m 0755 nginx-log-collector %{buildroot}%{_bindir}/nginx-log-collector
 install -d %{buildroot}/etc/nginx-log-collector
-ls
-pwd
 cp %{SOURCE1} %{buildroot}/etc/nginx-log-collector/config.yaml
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
