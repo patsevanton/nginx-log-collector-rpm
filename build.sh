@@ -11,6 +11,6 @@ do
 done
 
 mkdir -p ./{RPMS,SRPMS,BUILD,SOURCES,SPECS}
-cp nginx-log-collector.service SOURCES
+cp nginx-log-collector.service config.yaml SOURCES
 spectool -g -C SOURCES nginx-log-collector.spec
 rpmbuild --quiet --define "_topdir `pwd`" -bb nginx-log-collector.spec
